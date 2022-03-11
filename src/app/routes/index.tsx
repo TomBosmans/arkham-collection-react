@@ -1,15 +1,20 @@
 import { Navigate } from "react-router-dom"
-import Home from "./Home"
+import CardRoute from "./CardRoute"
+import CardsRoute from "./CardsRoute"
 import { RouteObject } from "./router"
 
 const routes: RouteObject[] = [
   {
-    component: () => <Navigate to="/home" />,
+    component: () => <Navigate to="/cards" />,
     path: "*"
   },
   {
-    component: Home,
-    path: "/home"
+    component: CardsRoute,
+    path: "/cards"
+  },
+  {
+    component: CardRoute,
+    path: "/cards/:id"
   }
 ]
 
