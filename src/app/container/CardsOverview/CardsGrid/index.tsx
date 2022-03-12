@@ -11,6 +11,7 @@ import TraitsCell from "./TraitsCell"
 import { useAppDispatch, useAppSelector } from "app/hooks"
 import { setCardsGridSortModel } from "../slice"
 import { selectCardsOverviewCardsGridSortModel } from "../selectors"
+import NameCell from "./NameCell"
 
 type Props = {
   cards: Card[]
@@ -24,7 +25,13 @@ export default function CardsGrid({ cards }: Props) {
 
   const rows = cards.map((card, id) => ({ ...card, id }))
   const columns: GridColDef[] = [
-    { flex: 2, field: "name", headerName: "Name" },
+    {
+      flex: 2,
+      field: "name",
+      headerName: "Name",
+      renderCell: NameCell,
+      hideable: false
+    },
     {
       flex: 2,
       field: "faction_name",
