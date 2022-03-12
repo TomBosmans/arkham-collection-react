@@ -10,7 +10,7 @@ const routes: RouteObject[] = [
   },
   {
     component: CardsRoute,
-    path: "/cards"
+    path: "/cards/:packCode"
   },
   {
     component: CardRoute,

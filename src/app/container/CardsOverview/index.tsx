@@ -1,7 +1,12 @@
+import CardsGrid from "app/components/CardsGrid"
+import { Card } from "app/types/card"
+
 type Props = {
-  cards: unknown
+  cards: Card[]
 }
 
 export default function CardsOverview({ cards }: Props) {
-  return <div> ${cards} </div>
-} 
+  return (
+    <CardsGrid cards={cards} />
+  )
+}
