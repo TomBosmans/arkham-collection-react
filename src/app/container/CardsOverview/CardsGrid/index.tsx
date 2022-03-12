@@ -1,13 +1,27 @@
-import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid"
+import {
+  DataGrid,
+  GridColDef,
+  GridSortModel,
+  GridToolbar
+} from "@mui/x-data-grid"
 import { Card } from "app/types/card"
 import { LinearProgress } from "@mui/material"
 import FactionCell from "./FactionCell"
 import TraitsCell from "./TraitsCell"
+import { useAppDispatch, useAppSelector } from "app/hooks"
+import { setCardsGridSortModel } from "../slice"
+import { selectCardsOverviewCardsGridSortModel } from "../selectors"
 
 type Props = {
   cards: Card[]
 }
 export default function CardsGrid({ cards }: Props) {
+  const dispatch = useAppDispatch()
+  const sortModel = useAppSelector(selectCardsOverviewCardsGridSortModel)
+
+  const onSortModelChange = (newSortModel: GridSortModel) =>
+    dispatch(setCardsGridSortModel(newSortModel))
+
   const rows = cards.map((card, id) => ({ ...card, id }))
   const columns: GridColDef[] = [
     { flex: 2, field: "name", headerName: "Name" },
@@ -39,6 +53,8 @@ export default function CardsGrid({ cards }: Props) {
         }}
         rows={rows}
         columns={columns}
+        sortModel={sortModel}
+        onSortModelChange={onSortModelChange}
       />
     </div>
   )

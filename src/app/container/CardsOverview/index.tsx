@@ -1,5 +1,5 @@
-import CardsGrid from "app/components/CardsGrid"
 import { Card } from "app/types/card"
+import CardsGrid from "./CardsGrid"
 
 type Props = {
   cards: Card[]
