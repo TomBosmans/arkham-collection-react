@@ -10,15 +10,15 @@ import FactionCell from "./FactionCell"
 import TraitsCell from "./TraitsCell"
 import { useAppDispatch, useAppSelector } from "app/hooks"
 import { setCardsGridSortModel } from "../slice"
-import { selectCardsOverviewCardsGridSortModel } from "../selectors"
 import NameCell from "./NameCell"
+import { selectCardsOverviewCardsGrid } from "../selectors"
 
 type Props = {
   cards: Card[]
 }
 export default function CardsGrid({ cards }: Props) {
   const dispatch = useAppDispatch()
-  const sortModel = useAppSelector(selectCardsOverviewCardsGridSortModel)
+  const { sortModel, isLoading } = useAppSelector(selectCardsOverviewCardsGrid)
 
   const onSortModelChange = (newSortModel: GridSortModel) =>
     dispatch(setCardsGridSortModel(newSortModel))
@@ -58,6 +58,7 @@ export default function CardsGrid({ cards }: Props) {
           Toolbar: GridToolbar,
           LoadingOverlay: LinearProgress
         }}
+        loading={isLoading}
         rows={rows}
         columns={columns}
         sortModel={sortModel}

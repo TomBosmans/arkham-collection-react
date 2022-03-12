@@ -3,12 +3,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 type State = {
   cardsGrid: {
+    isLoading: boolean
     sortModel: GridSortModel
   }
 }
 
 const initialState: State = {
   cardsGrid: {
+    isLoading: false,
     sortModel: []
   }
 }
@@ -17,6 +19,12 @@ export const cardsOverviewSlice = createSlice({
   name: "cardsOverview",
   initialState,
   reducers: {
+    setCardsGridIsLoading: (state, actions: PayloadAction<boolean>): State => {
+      return {
+        ...state,
+        cardsGrid: { ...state.cardsGrid, isLoading: actions.payload }
+      }
+    },
     setCardsGridSortModel: (
       state,
       actions: PayloadAction<GridSortModel>
@@ -29,5 +37,6 @@ export const cardsOverviewSlice = createSlice({
   }
 })
 
-export const { setCardsGridSortModel } = cardsOverviewSlice.actions
+export const { setCardsGridIsLoading, setCardsGridSortModel } =
+  cardsOverviewSlice.actions
 export default cardsOverviewSlice.reducer

@@ -11,7 +11,7 @@ const routes: RouteObject[] = [
   },
   {
     component: CardsRoute,
-    path: "/cards/:packCode",
+    path: "/cards",
     layout: Layout
   },
   {

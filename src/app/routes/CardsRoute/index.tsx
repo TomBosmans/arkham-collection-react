@@ -1,9 +1,11 @@
 import { useGetCardsPackQuery } from "app/api/arkhamDb"
 import CardsOverview from "app/container/CardsOverview"
+import { setCardsGridIsLoading } from "app/container/CardsOverview/slice"
+import { useAppDispatch } from "app/hooks"
 
 export default function CardsRoute() {
+  const dispatch = useAppDispatch()
   const { isLoading, data: cards } = useGetCardsPackQuery("core")
-  if (isLoading) return <div> is loading </div>
-  if (!cards) return <div> couldn't find cards </div>
-  return <CardsOverview cards={cards} />
+  dispatch(setCardsGridIsLoading(isLoading))
+  return <CardsOverview cards={cards || []} />
 }
