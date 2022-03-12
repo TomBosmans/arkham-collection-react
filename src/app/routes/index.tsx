@@ -1,3 +1,4 @@
+import Layout from "app/container/Layout"
 import { Navigate } from "react-router-dom"
 import CardRoute from "./CardRoute"
 import CardsRoute from "./CardsRoute"
@@ -10,7 +11,8 @@ const routes: RouteObject[] = [
   },
   {
     component: CardsRoute,
-    path: "/cards/:packCode"
+    path: "/cards/:packCode",
+    layout: Layout
   },
   {
     component: CardRoute,
