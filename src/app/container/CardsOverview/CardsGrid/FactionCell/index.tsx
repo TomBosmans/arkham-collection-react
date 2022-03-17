@@ -1,8 +1,9 @@
 import Chip from "@mui/material/Chip"
+import { CardEntity } from "types"
 import { classColor } from "./utils"
 
 type Props = {
-  value: string
+  value: CardEntity["factionName"]
 }
 
 export default function FactionCell({ value }: Props) {

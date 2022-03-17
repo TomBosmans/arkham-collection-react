@@ -1,12 +1,11 @@
 import { StyledChip } from "./style"
 
 type Props = {
-  value?: string
+  value: string
 }
 
 export default function TraitsCell({ value }: Props) {
-  if (!value) return
-  const traits = value.split(".")
+  const traits = value.split(",")
   return (
     <>
       {traits.map((trait, key) => {

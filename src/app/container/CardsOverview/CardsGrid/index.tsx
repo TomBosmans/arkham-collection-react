@@ -1,29 +1,20 @@
-import {
-  DataGrid,
-  GridColDef,
-  GridSortModel,
-  GridToolbar
-} from "@mui/x-data-grid"
-import { Card } from "app/types/card"
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid"
 import { LinearProgress } from "@mui/material"
 import FactionCell from "./FactionCell"
 import TraitsCell from "./TraitsCell"
-import { useAppDispatch, useAppSelector } from "app/hooks"
-import { setCardsGridSortModel } from "../slice"
 import NameCell from "./NameCell"
-import { selectCardsOverviewCardsGrid } from "../selectors"
+import { CardEntity } from "types"
+import { useSearchParams } from "react-router-dom"
 
 type Props = {
-  cards: Card[]
+  cards: CardEntity[]
+  totalRows: number
+  isLoading: boolean
 }
-export default function CardsGrid({ cards }: Props) {
-  const dispatch = useAppDispatch()
-  const { sortModel, isLoading } = useAppSelector(selectCardsOverviewCardsGrid)
+export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  const onSortModelChange = (newSortModel: GridSortModel) =>
-    dispatch(setCardsGridSortModel(newSortModel))
-
-  const rows = cards.map((card, id) => ({ ...card, id }))
+  const rows = cards.map(card => ({ ...card, traits: card.traits.join(",") }))
   const columns: GridColDef[] = [
     {
       flex: 2,
@@ -34,22 +25,32 @@ export default function CardsGrid({ cards }: Props) {
     },
     {
       flex: 2,
-      field: "faction_name",
+      field: "factionName",
       headerName: "Class",
       renderCell: FactionCell
     },
     { flex: 1, field: "cost", headerName: "Cost" },
-    { flex: 2, field: "type_name", headerName: "Type" },
-    { flex: 1, field: "", headerName: "Icons" },
+    { flex: 1, field: "quantity", headerName: "Quantity" },
+    { flex: 2, field: "typeName", headerName: "Type" },
     {
       flex: 3,
       field: "traits",
       headerName: "Traits",
       renderCell: TraitsCell
     },
-    { flex: 1, field: "pack_name", headerName: "Set" },
-    { flex: 1, field: "", headerName: "Encounter" }
+    { flex: 1, field: "packId", headerName: "Set" },
+    { flex: 1, field: "encounterName", headerName: "Encounter" }
   ]
+
+  const onPageSizeChange = (limit: number) => {
+    searchParams.set("pagination[limit]", `${limit}`)
+    setSearchParams(searchParams.toString())
+  }
+
+  const onPageChange = (offset: number) => {
+    searchParams.set("pagination[page]", `${offset}`)
+    setSearchParams(searchParams.toString())
+  }
 
   return (
     <div style={{ height: 800, width: "100%" }}>
@@ -61,8 +62,11 @@ export default function CardsGrid({ cards }: Props) {
         loading={isLoading}
         rows={rows}
         columns={columns}
-        sortModel={sortModel}
-        onSortModelChange={onSortModelChange}
+        paginationMode={"server"}
+        onPageSizeChange={onPageSizeChange}
+        onPageChange={onPageChange}
+        rowCount={totalRows}
+        hideFooterSelectedRowCount
       />
     </div>
   )

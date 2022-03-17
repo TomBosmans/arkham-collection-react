@@ -1,14 +1,15 @@
 import { Popper } from "@mui/material"
 import { useState, MouseEvent } from "react"
+import { CardEntity } from "types"
 
 type Props = {
-  value: string
-  row: { imagesrc: string }
+  value: CardEntity["name"]
+  row: CardEntity
 }
 
 export default function NameCell(props: Props) {
   const value = props.value
-  const imagesrc = props.row.imagesrc
+  const imageSrc = props.row.imageSrc
   const [open, setOpen] = useState(false)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
@@ -26,7 +27,7 @@ export default function NameCell(props: Props) {
     <>
       <div onMouseOver={onMouseOver} onMouseOut={onMouseOut}>{value}</div>
       <Popper open={open} anchorEl={anchorEl} placement={"right-start"}>
-        <img src={`https://arkhamdb.com/${imagesrc}`} alt={value} />
+        <img src={`http://localhost:4000${imageSrc}`} alt={value} />
       </Popper>
     </>
   )

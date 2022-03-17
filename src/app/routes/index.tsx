@@ -1,7 +1,6 @@
+import CardsOverview from "app/container/CardsOverview"
 import Layout from "app/container/Layout"
 import { Navigate } from "react-router-dom"
-import CardRoute from "./CardRoute"
-import CardsRoute from "./CardsRoute"
 import { RouteObject } from "./router"
 
 const routes: RouteObject[] = [
@@ -10,13 +9,9 @@ const routes: RouteObject[] = [
     path: "*"
   },
   {
-    component: CardsRoute,
+    component: CardsOverview,
     path: "/cards",
     layout: Layout
-  },
-  {
-    component: CardRoute,
-    path: "/cards/:id"
   }
 ]
 
