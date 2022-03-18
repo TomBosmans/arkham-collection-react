@@ -5,6 +5,7 @@ import TraitsCell from "./TraitsCell"
 import NameCell from "./NameCell"
 import { CardEntity } from "types"
 import { useSearchParams } from "react-router-dom"
+import HeaderCell from "./HeaderCell"
 
 type Props = {
   cards: CardEntity[]
@@ -20,26 +21,63 @@ export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
       flex: 2,
       field: "name",
       headerName: "Name",
+      hideable: false,
       renderCell: NameCell,
-      hideable: false
+      hideSortIcons: true,
+      renderHeader: HeaderCell
     },
     {
       flex: 2,
       field: "factionName",
       headerName: "Class",
-      renderCell: FactionCell
+      renderCell: FactionCell,
+      hideSortIcons: true,
+      renderHeader: HeaderCell
     },
-    { flex: 1, field: "cost", headerName: "Cost" },
-    { flex: 1, field: "quantity", headerName: "Quantity" },
-    { flex: 2, field: "typeName", headerName: "Type" },
+    {
+      flex: 1,
+      field: "cost",
+      headerName: "Cost",
+      hideSortIcons: true,
+      renderHeader: HeaderCell
+    },
+    {
+      flex: 1,
+      field: "quantity",
+      headerName: "Quantity",
+      hideSortIcons: true,
+      renderHeader: HeaderCell
+    },
+    {
+      flex: 2,
+      field: "typeName",
+      headerName: "Type",
+      hideSortIcons: true,
+      renderHeader: HeaderCell
+    },
     {
       flex: 3,
       field: "traits",
       headerName: "Traits",
-      renderCell: TraitsCell
+      renderCell: TraitsCell,
+      sortable: false,
+      hideSortIcons: true,
+      renderHeader: HeaderCell
     },
-    { flex: 1, field: "packId", headerName: "Set" },
-    { flex: 1, field: "encounterName", headerName: "Encounter" }
+    {
+      flex: 1,
+      field: "packId",
+      headerName: "Set",
+      hideSortIcons: true,
+      renderHeader: HeaderCell
+    },
+    {
+      flex: 1,
+      field: "encounterName",
+      headerName: "Encounter",
+      hideSortIcons: true,
+      renderHeader: HeaderCell
+    }
   ]
 
   const onPageSizeChange = (limit: number) => {
@@ -62,11 +100,14 @@ export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
         loading={isLoading}
         rows={rows}
         columns={columns}
+        sortingMode={"server"}
+        onSortModelChange={() => {}}
         paginationMode={"server"}
         onPageSizeChange={onPageSizeChange}
         onPageChange={onPageChange}
         rowCount={totalRows}
         hideFooterSelectedRowCount
+        disableColumnMenu
       />
     </div>
   )

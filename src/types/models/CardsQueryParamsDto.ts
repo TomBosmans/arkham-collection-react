@@ -5,5 +5,6 @@
 import type { PaginationParamsDto } from './PaginationParamsDto';
 
 export type CardsQueryParamsDto = {
-    pagination: PaginationParamsDto;
+    pagination?: PaginationParamsDto;
+    sort?: string;
 };

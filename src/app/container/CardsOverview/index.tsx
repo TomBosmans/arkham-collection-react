@@ -4,14 +4,13 @@ import CardsGrid from "./CardsGrid"
 
 export default function CardsOverview() {
   const [searchParams] = useSearchParams()
-  const { isLoading, data } = useGetCardsQuery({
-    pagination: {
-      limit: searchParams.get("pagination[limit]") || "50",
-      page: searchParams.get("pagination[page]") || "0",
-    }
-  })
+  const { isFetching, data } = useGetCardsQuery(searchParams.toString())
 
   return (
-    <CardsGrid cards={data?.data || []} totalRows={data?.totalRows || 0} isLoading={isLoading} />
+    <CardsGrid
+      cards={data?.data || []}
+      totalRows={data?.totalRows || 0}
+      isLoading={isFetching}
+    />
   )
 }

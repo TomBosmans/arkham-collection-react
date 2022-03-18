@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { CardCollectionEntity, CardsQueryParamsDto, PackEntity } from "types"
+import { CardCollectionEntity, PackEntity } from "types"
 
 export const arkhamCollection = createApi({
   reducerPath: "arkhamCollectionApi",
@@ -10,14 +10,8 @@ export const arkhamCollection = createApi({
     getPacks: builder.query<PackEntity[], void>({
       query: () => "/packs"
     }),
-    getCards: builder.query<CardCollectionEntity, CardsQueryParamsDto>({
-      query: ({ pagination: { page, limit } }) => {
-        const queryParams = []
-        if (page) queryParams.push(`pagination[page]=${page}`)
-        if (limit) queryParams.push(`pagination[limit]=${limit}`)
-
-        return queryParams.length > 0 ? `/cards?${queryParams.join("&")}` : "/cards"
-      }
+    getCards: builder.query<CardCollectionEntity, string>({
+      query: queryParams => (queryParams ? `/cards?${queryParams}` : "/cards")
     })
   })
 })
