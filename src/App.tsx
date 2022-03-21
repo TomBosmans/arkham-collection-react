@@ -1,5 +1,5 @@
 import Router from "./app/routes/router"
-import { BrowserRouter } from "react-router-dom"
+import { HashRouter } from "react-router-dom"
 import { ThemeProvider } from "@mui/system"
 import { createTheme, CssBaseline } from "@mui/material"
 import { useAppSelector } from "app/hooks"
@@ -17,9 +17,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
+      <HashRouter>
         <Router />
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   )
 }

@@ -27,7 +27,7 @@ export default function NameCell(props: Props) {
     <>
       <div onMouseOver={onMouseOver} onMouseOut={onMouseOut}>{value}</div>
       <Popper open={open} anchorEl={anchorEl} placement={"right-start"}>
-        <img src={`http://localhost:4000${imageSrc}`} alt={value} />
+        <img src={`https://arkham-collection.herokuapp.com${imageSrc}`} alt={value} />
       </Popper>
     </>
   )
