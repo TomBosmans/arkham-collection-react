@@ -1,4 +1,6 @@
-import { Popper, Skeleton } from "@mui/material"
+import { ImageList, ImageListItem, Popper } from "@mui/material"
+import Image from "app/components/Image"
+import React from "react"
 import { useState, MouseEvent } from "react"
 import { CardEntity } from "types"
 
@@ -8,12 +10,15 @@ type Props = {
 }
 
 export default function NameCell(props: Props) {
-  const [isLoading, setLoading] = useState(true)
   const value = props.value
   const imageSrc = props.row.imageSrc
+  const backImageSrc = props.row.backImageSrc
+  console.log(backImageSrc)
   const isFlipped = ["Investigator", "Act", "Agenda"].includes(
     props.row.typeName
   )
+  const width = isFlipped ? 419 : 300
+  const height = isFlipped ? 300 : 419
   const [open, setOpen] = useState(false)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
@@ -33,21 +38,27 @@ export default function NameCell(props: Props) {
         {value}
       </div>
       <Popper open={open} anchorEl={anchorEl} placement={"right-start"}>
-        {isLoading && (
-          <Skeleton
-            variant="rectangular"
-            width={isFlipped ? 419 : 300}
-            height={isFlipped ? 300 : 419}
-          />
-        )}
-        <img
-          hidden={isLoading}
-          width={isFlipped ? 419 : 300}
-          height={isFlipped ? 300 : 419}
-          src={`https://arkham-collection.herokuapp.com${imageSrc}`}
-          onLoadCapture={() => setLoading(false)}
-          alt={value}
-        />
+        <ImageList cols={1} gap={8}>
+          <ImageListItem>
+            <Image
+              width={width}
+              height={height}
+              src={`https://arkham-collection.herokuapp.com${imageSrc}`}
+              alt={value}
+            />
+          </ImageListItem>
+
+          {backImageSrc && (
+            <ImageListItem>
+              <Image
+                width={width}
+                height={height}
+                src={`https://arkham-collection.herokuapp.com${backImageSrc}`}
+                alt={value}
+              />
+            </ImageListItem>
+          )}
+        </ImageList>
       </Popper>
     </>
   )
