@@ -108,6 +108,7 @@ export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
         rowCount={totalRows}
         hideFooterSelectedRowCount
         disableColumnMenu
+        disableColumnFilter
       />
     </div>
   )
