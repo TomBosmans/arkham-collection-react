@@ -6,6 +6,7 @@ import NameCell from "./NameCell"
 import { CardEntity } from "types"
 import { useSearchParams } from "react-router-dom"
 import HeaderCell from "./HeaderCell"
+import { useEffect } from "react"
 
 type Props = {
   cards: CardEntity[]
@@ -14,6 +15,20 @@ type Props = {
 }
 export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
   const [searchParams, setSearchParams] = useSearchParams()
+  const page = Number(searchParams.get("pagination[page]")) || 0
+  const pageSize = Number(searchParams.get("pagination[limit]")) || 100
+
+  useEffect(() => {
+    if (!searchParams.get("pagination[page]")) {
+      searchParams.set("pagination[page]", "0")
+    }
+
+    if (!searchParams.get("pagination[limit]")) {
+      searchParams.set("pagination[limit]", "100")
+    }
+
+    setSearchParams(searchParams.toString())
+  }, [searchParams, setSearchParams])
 
   const rows = cards.map(card => ({ ...card, traits: card.traits.join(",") }))
   const columns: GridColDef[] = [
@@ -103,6 +118,8 @@ export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
         sortingMode={"server"}
         onSortModelChange={() => {}}
         paginationMode={"server"}
+        page={page}
+        pageSize={pageSize}
         onPageSizeChange={onPageSizeChange}
         onPageChange={onPageChange}
         rowCount={totalRows}
