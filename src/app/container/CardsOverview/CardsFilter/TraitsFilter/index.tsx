@@ -24,7 +24,7 @@ export default function TraitsFilter() {
       disableListWrap
       ListboxComponent={ListboxComponent}
       renderInput={params => (
-        <TextField {...params} variant="outlined" label="Traits" />
+        <TextField {...params} variant="outlined" label="Traits (and)" />
       )}
       renderOption={(props, option) => [props, option]}
       renderGroup={params => params}

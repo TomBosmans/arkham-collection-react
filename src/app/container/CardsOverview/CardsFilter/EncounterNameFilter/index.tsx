@@ -1,27 +1,30 @@
 import TextField from "@mui/material/TextField"
 import { Autocomplete } from "@mui/material"
-import { useGetCardNamesQuery } from "app/api/arkhamCollection"
+import { useGetEncounterNamesQuery } from "app/api/arkhamCollection"
 import { SyntheticEvent } from "react"
 import { useSearchParams } from "react-router-dom"
 import ListboxComponent from "app/components/ListBoxComponent"
 
-export default function NameFilter() {
-  const { data: cardNames } = useGetCardNamesQuery()
+export default function EncounterNameFilter() {
+  const { data: encounterNames } = useGetEncounterNamesQuery()
   const [searchParams, setSearchParams] = useSearchParams()
-  const value = searchParams.get("name")
+  const value = searchParams.getAll("encounterNames[]")
 
-  const onChange = (_: SyntheticEvent, name: string | null) => {
-    if (name) searchParams.set("name", name)
-    if (!name) searchParams.delete("name")
+  const onChange = (_: SyntheticEvent, factionNames: string[]) => {
+    searchParams.delete("encounterNames[]")
+    factionNames.forEach(factionName =>
+      searchParams.append("encounterNames[]", factionName)
+    )
     setSearchParams(searchParams.toString())
   }
 
   return (
     <Autocomplete
-      options={cardNames || []}
+      multiple
+      options={encounterNames || []}
       value={value}
       renderInput={params => (
-        <TextField {...params} variant="outlined" label="Name" />
+        <TextField {...params} variant="outlined" label="Encounter (or)" />
       )}
       disableListWrap
       ListboxComponent={ListboxComponent}

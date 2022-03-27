@@ -10,16 +10,16 @@ type Props = {
 }
 export default function PacksTreeItem({ pack, children }: Props) {
   const [searchParams, setSearchParams] = useSearchParams()
-  const selected = searchParams.getAll("pack[]")
+  const selected = searchParams.getAll("packIds[]")
   const checked = selected.includes(pack.id)
 
   const onChange = () => {
-    searchParams.delete("pack[]")
-    if (!checked) searchParams.append("pack[]", pack.id)
+    searchParams.delete("packIds[]")
+    if (!checked) searchParams.append("packIds[]", pack.id)
 
     selected.forEach(id => {
       if (id === pack.id) return
-      searchParams.append("pack[]", id)
+      searchParams.append("packIds[]", id)
     })
     setSearchParams(searchParams.toString())
   }

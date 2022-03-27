@@ -5,7 +5,7 @@ export const StyledContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1),
   gridGap: theme.spacing(1),
   gridTemplateColumns: "20% 80%",
-  gridTemplateRows: "10% 90%",
+  gridTemplateRows: "20% 80%",
   gridTemplateAreas: `
     "a b"
     "a c"
