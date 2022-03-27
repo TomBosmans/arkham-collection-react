@@ -37,7 +37,7 @@ export default function NameCell(props: Props) {
         {value}
       </div>
       <Popper open={open} anchorEl={anchorEl} placement={"right-start"}>
-        <ImageList cols={1} gap={8}>
+        <ImageList cols={2} gap={8}>
           <ImageListItem>
             <Image
               width={width}
