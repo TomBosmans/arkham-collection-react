@@ -23,7 +23,7 @@ export default function HeaderCell(props: GridColumnHeaderParams) {
     setSearchParams(searchParams.toString())
   }
 
-  const mutliSort = () => {
+  const multiSort = () => {
     const newActiveFields = activeFields.filter(
       ({ field }) => field !== props.field
     )
@@ -47,8 +47,8 @@ export default function HeaderCell(props: GridColumnHeaderParams) {
   }
 
   const onClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    if (event.shiftKey && event.metaKey) return mutliSort()
-    return singleSort()
+    if (event.shiftKey) return singleSort()
+    return multiSort()
   }
 
   return (
