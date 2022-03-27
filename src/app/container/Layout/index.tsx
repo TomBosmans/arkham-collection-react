@@ -1,5 +1,5 @@
-import { Container } from "@mui/material"
 import LayoutAppBar from "./AppBar"
+import { StyledContent, StyledMain } from "./style"
 
 type Props = {
   children: JSX.Element
@@ -7,9 +7,9 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <main>
+    <StyledMain>
       <LayoutAppBar />
-      <Container>{children}</Container>
-    </main>
+      <StyledContent>{children}</StyledContent>
+    </StyledMain>
   )
 }

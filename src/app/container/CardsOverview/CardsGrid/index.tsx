@@ -106,27 +106,25 @@ export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
   }
 
   return (
-    <div style={{ height: 800, width: "100%" }}>
-      <DataGrid
-        components={{
-          Toolbar: GridToolbar,
-          LoadingOverlay: LinearProgress
-        }}
-        loading={isLoading}
-        rows={rows}
-        columns={columns}
-        sortingMode={"server"}
-        onSortModelChange={() => {}}
-        paginationMode={"server"}
-        page={page}
-        pageSize={pageSize}
-        onPageSizeChange={onPageSizeChange}
-        onPageChange={onPageChange}
-        rowCount={totalRows}
-        hideFooterSelectedRowCount
-        disableColumnMenu
-        disableColumnFilter
-      />
-    </div>
+    <DataGrid
+      components={{
+        Toolbar: GridToolbar,
+        LoadingOverlay: LinearProgress
+      }}
+      loading={isLoading}
+      rows={rows}
+      columns={columns}
+      sortingMode={"server"}
+      onSortModelChange={() => {}}
+      paginationMode={"server"}
+      page={page}
+      pageSize={pageSize}
+      onPageSizeChange={onPageSizeChange}
+      onPageChange={onPageChange}
+      rowCount={totalRows}
+      hideFooterSelectedRowCount
+      disableColumnMenu
+      disableColumnFilter
+    />
   )
 }

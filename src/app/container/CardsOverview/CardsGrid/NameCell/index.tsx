@@ -13,7 +13,6 @@ export default function NameCell(props: Props) {
   const value = props.value
   const imageSrc = props.row.imageSrc
   const backImageSrc = props.row.backImageSrc
-  console.log(backImageSrc)
   const isFlipped = ["Investigator", "Act", "Agenda"].includes(
     props.row.typeName
   )

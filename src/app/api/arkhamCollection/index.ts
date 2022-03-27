@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { CardCollectionEntity, PackEntity } from "types"
+import { CardCollectionEntity, PackTreeEntity } from "types"
 
 export const arkhamCollection = createApi({
   reducerPath: "arkhamCollectionApi",
@@ -7,7 +7,7 @@ export const arkhamCollection = createApi({
     baseUrl: "https://arkham-collection.herokuapp.com"
   }),
   endpoints: builder => ({
-    getPacks: builder.query<PackEntity[], void>({
+    getPacks: builder.query<PackTreeEntity[], void>({
       query: () => "/packs"
     }),
     getCards: builder.query<CardCollectionEntity, string>({
