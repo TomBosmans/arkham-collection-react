@@ -42,7 +42,7 @@ export default function NameCell(props: Props) {
             <Image
               width={width}
               height={height}
-              src={`https://arkham-collection.herokuapp.com${imageSrc}`}
+              src={`${process.env.REACT_APP_ARKHAM_COLLECTION_BASE_URL}${imageSrc}`}
               alt={value}
             />
           </ImageListItem>
@@ -52,7 +52,7 @@ export default function NameCell(props: Props) {
               <Image
                 width={width}
                 height={height}
-                src={`https://arkham-collection.herokuapp.com${backImageSrc}`}
+                src={`${process.env.REACT_APP_ARKHAM_COLLECTION_BASE_URL}${backImageSrc}`}
                 alt={value}
               />
             </ImageListItem>
