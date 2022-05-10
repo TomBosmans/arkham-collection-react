@@ -27,6 +27,9 @@ export const arkhamCollection = createApi({
     }),
     getTypeNames: builder.query<string[], void>({
       query: () => "/type_names"
+    }),
+    getXpValues: builder.query<number[], void>({
+      query: () => "/xp_values"
     })
   })
 })
@@ -38,5 +41,6 @@ export const {
   useGetCardNamesQuery,
   useGetFactionNamesQuery,
   useGetEncounterNamesQuery,
-  useGetTypeNamesQuery
+  useGetTypeNamesQuery,
+  useGetXpValuesQuery,
 } = arkhamCollection

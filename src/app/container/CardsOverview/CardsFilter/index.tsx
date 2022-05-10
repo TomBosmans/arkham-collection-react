@@ -3,7 +3,8 @@ import {
   StyledFactionNameFilterContainer,
   StyledTypeNameFilterContainer,
   StyledEncounterNameFilterContainer,
-  StyledTraitsFilterContainer
+  StyledTraitsFilterContainer,
+  StyledXpFilterContainer
 } from "./style"
 import EncounterNameFilter from "./EncounterNameFilter"
 import FactionNameFilter from "./FactionNameFilter"
@@ -11,6 +12,7 @@ import NameFilter from "./NameFilter"
 import { StyledNameFilterContainer } from "./style"
 import TraitsFilter from "./TraitsFilter"
 import TypeNameFilter from "./TypeNameFilter"
+import XpFilter from "./XpFilter"
 
 export default function CardsFilter() {
   return (
@@ -30,6 +32,9 @@ export default function CardsFilter() {
       <StyledTraitsFilterContainer>
         <TraitsFilter />
       </StyledTraitsFilterContainer>
+      <StyledXpFilterContainer>
+        <XpFilter />
+      </StyledXpFilterContainer>
     </StyledContainer>
   )
 }

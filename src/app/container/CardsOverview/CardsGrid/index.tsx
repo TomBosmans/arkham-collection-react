@@ -58,6 +58,13 @@ export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
     },
     {
       flex: 1,
+      field: "xp",
+      headerName: "XP",
+      hideSortIcons: true,
+      renderHeader: HeaderCell
+    },
+    {
+      flex: 1,
       field: "quantity",
       headerName: "Quantity",
       hideSortIcons: true,

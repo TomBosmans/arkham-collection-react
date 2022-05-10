@@ -6,7 +6,7 @@ export const StyledContainer = styled(Box)(({ theme }) => ({
   gridGap: theme.spacing(1),
   gridTemplateAreas: `
     "a b c"
-    "d e e"
+    "d e f"
   `,
   height: "100%",
   width: "100%"
@@ -26,4 +26,7 @@ export const StyledEncounterNameFilterContainer = styled(Box)({
 })
 export const StyledTraitsFilterContainer = styled(Box)({
   gridArea: "e"
+})
+export const StyledXpFilterContainer = styled(Box)({
+  gridArea: "f"
 })
