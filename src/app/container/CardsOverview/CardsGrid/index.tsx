@@ -7,6 +7,7 @@ import { CardEntity } from "types"
 import { useSearchParams } from "react-router-dom"
 import HeaderCell from "./HeaderCell"
 import { useEffect } from "react"
+import SetCell from "./SetCell"
 
 type Props = {
   cards: CardEntity[]
@@ -30,7 +31,10 @@ export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
     setSearchParams(searchParams.toString())
   }, [searchParams, setSearchParams])
 
-  const rows = cards.map(card => ({ ...card, traits: card.traits.join(",") }))
+  const rows = cards.map(card => ({
+    ...card,
+    traits: card.traits.join(","),
+  }))
   const columns: GridColDef[] = [
     {
       flex: 2,
@@ -42,7 +46,7 @@ export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
       renderHeader: HeaderCell
     },
     {
-      flex: 2,
+      flex: 1.2,
       field: "factionName",
       headerName: "Class",
       renderCell: FactionCell,
@@ -87,14 +91,15 @@ export default function CardsGrid({ cards, isLoading, totalRows }: Props) {
       renderHeader: HeaderCell
     },
     {
-      flex: 1,
+      flex: 2,
       field: "packId",
       headerName: "Set",
       hideSortIcons: true,
+      renderCell: SetCell,
       renderHeader: HeaderCell
     },
     {
-      flex: 1,
+      flex: 2,
       field: "encounterName",
       headerName: "Encounter",
       hideSortIcons: true,
