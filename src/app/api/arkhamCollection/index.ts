@@ -4,7 +4,7 @@ import { CardCollectionEntity, PackTreeEntity } from "types"
 export const arkhamCollection = createApi({
   reducerPath: "arkhamCollectionApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://arkham-collection.herokuapp.com"
+    baseUrl: process.env.REACT_APP_ARKHAM_COLLECTION_BASE_URL
   }),
   endpoints: builder => ({
     getPacks: builder.query<PackTreeEntity[], void>({
