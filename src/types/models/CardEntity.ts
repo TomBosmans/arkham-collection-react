@@ -7,6 +7,7 @@ export type CardEntity = {
     packId: string;
     name: string;
     cost: any;
+    xp: any;
     quantity: number;
     traits: Array<string>;
     factionName: string;
